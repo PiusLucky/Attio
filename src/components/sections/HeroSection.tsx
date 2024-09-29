@@ -2,7 +2,7 @@ import React from "react";
 import HeroHeaderSection from "./HeroHeaderSection";
 import MainButton from "../common/MainButton";
 import { cn } from "@/lib/utils";
-import { gilroyBold } from "@/app/layout";
+import { gilroyBold } from "@/lib/utils";
 import { HeroYoutubeModal } from "../modals/HeroYoutubeModal";
 
 function HeroSection() {

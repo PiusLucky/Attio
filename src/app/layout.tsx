@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from "next/font/google"
 import './globals.css'
-import localFont from 'next/font/local'
 
 
 export const metadata: Metadata = {
@@ -11,14 +10,7 @@ export const metadata: Metadata = {
 
 const inter = Inter({subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "700"]})
 
-export const gilroyBold = localFont({
-  src: [
-    {
-      path: '../../public/font/gilroy_bold.ttf',
-      weight: '700'
-    }
-  ],
-})
+
 
 
 export default function RootLayout({
