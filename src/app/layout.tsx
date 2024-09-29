@@ -10,9 +10,6 @@ export const metadata: Metadata = {
 
 const inter = Inter({subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "700"]})
 
-
-
-
 export default function RootLayout({
   children,
 }: {
