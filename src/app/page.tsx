@@ -14,18 +14,25 @@ import SecurityScaleSection from "@/components/sections/SecurityScaleSection";
 export default function Home() {
   return (
     <main>
-      <AlertSection />
-      <NavBar />
-      <HeroSection />
-      <MarqueeSection />
-      <CRMSection />
-      <DataModellingSection />
-      <MultiPlayerDesignSection />
-      <SecurityScaleSection />
-      <MoreFeaturesSection />
-      <LovedByBuildersSection />
-      <ReadyToBuildSection />
-      <FooterSection />
+      <div className="flex flex-col-reverse md:flex-col">
+        <AlertSection />
+        <NavBar />
+      </div>
+      <div className="mt-8 md:mt-[81px] flex flex-col gap-12 md:gap-[150px] px-4 md:px-[100px]">
+        <HeroSection />
+        <MarqueeSection />
+        <CRMSection />
+        <DataModellingSection />
+        <MultiPlayerDesignSection />
+        <SecurityScaleSection />
+      </div>
+
+      <div className="mt-8 md:mt-[81px] flex flex-col">
+        <MoreFeaturesSection />
+        <LovedByBuildersSection />
+        <ReadyToBuildSection />
+        <FooterSection />
+      </div>
     </main>
   );
 }

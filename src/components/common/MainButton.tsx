@@ -9,10 +9,10 @@ type MainButtonProps = {
   action?: () => void;
   isSubmitable?: boolean;
   disabled?: boolean;
-  width?: "full_width" | string;
+  width?: "full_width" | "contain" | string;
   dataLoadingText?: string;
   variant?: "primary" | "secondary";
-  classes?: string;
+  className?: string;
   iconRoute?: string;
   rightIconRoute?: string;
   rightIconClass?: string;
@@ -32,7 +32,7 @@ const MainButton = forwardRef<HTMLButtonElement, MainButtonProps>(
       width,
       dataLoadingText = "Please wait ...",
       variant = "primary",
-      classes,
+      className,
       iconRoute,
       rightIconRoute,
       rightIconClass = "w-[24px] h-[24px]",
@@ -42,7 +42,13 @@ const MainButton = forwardRef<HTMLButtonElement, MainButtonProps>(
     ref
   ) => {
     const propWidth =
-      width === "full_width" ? "w-full" : width ? width : "w-[245px]";
+      width === "full_width"
+        ? "w-full"
+        : width
+        ? width === "contain"
+          ? ""
+          : "w-[245px]"
+        : "";
 
     const isSecondaryVariant = variant !== "primary";
 
@@ -59,9 +65,9 @@ const MainButton = forwardRef<HTMLButtonElement, MainButtonProps>(
     return !isLoading ? (
       <Button
         form={form}
-        className={`${
+        className={`border-[.2rem] border-[#555E67] ${
           isSecondaryVariant ? " text-white  bg-secondary" : "bg-primary"
-        } text-white shadow-xl ${propWidth} md:${propWidth}  select-none rounded-[0.625rem] hover:opacity-90 ${variant_hover} ${size_height} ${classes}`}
+        } text-white  ${propWidth} md:${propWidth}  select-none rounded-[1.3rem] hover:opacity-90 ${variant_hover} ${size_height} ${className}`}
         onClick={!disabled ? action : () => undefined}
         type={isSubmitable ? "submit" : "button"}
         ref={ref}
@@ -90,7 +96,7 @@ const MainButton = forwardRef<HTMLButtonElement, MainButtonProps>(
     ) : (
       <Button
         className={`bg-primary text-white ${propWidth} md:${propWidth} select-none rounded-[0.625rem] cursor-not-allowed ${size_height} ${
-          classes ? classes : ""
+          className ? className : ""
         }`}
         ref={ref}
         disabled

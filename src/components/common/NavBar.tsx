@@ -2,37 +2,75 @@
 
 import { useState } from "react";
 import { X } from "lucide-react";
-import Link from "next/link";
+import MainButton from "./MainButton";
 
 function NavBar() {
+  const links = [
+    {
+      route: "/",
+      name: "Customer",
+      badgeCount: 0,
+    },
+    {
+      route: "/",
+      name: "Changelog",
+      badgeCount: 0,
+    },
+    {
+      route: "/",
+      name: "Help",
+      badgeCount: 0,
+    },
+    {
+      route: "/",
+      name: "Careers",
+      badgeCount: 4,
+    },
+    {
+      route: "/",
+      name: "Pricing",
+      badgeCount: 0,
+    },
+  ];
   const [menu, setMenu] = useState(false);
   const toggleMenu = () => {
     setMenu(!menu);
   };
 
   return (
-    <div className="md:sticky md:top-0   md:shadow-none z-20 ">
+    <div className="md:sticky md:top-0   md:shadow-none z-20 mt-[5rem] md:mt-0">
       {/* DESKTOP */}
       <div className=" hidden lg:block animate-in fade-in zoom-in bg-white p-4">
-        <div className="flex justify-between mx-[41px] items-center">
+        <div className="flex justify-between mx-4 items-center">
           <div>
-            <img src="/svgs/sf_logo.svg" alt="logo" />
+            <img src="/images/logo.svg" alt="logo" />
           </div>
           <div className="flex gap-[20px] xl:gap-[50px] text-[16px] items-center select-none">
-            <p
-              className={`hover:text-primary cursor-pointer flex items-center gap-2  font-[500] text-gray`}
-            >
-              Link1
-            </p>
-            {/* Add more links here */}
+            {links.map((item, index) => (
+              <div key={index} className="flex gap-2">
+                <p
+                  className={`hover:text-primary cursor-pointer flex items-center gap-2  font-[500] text-gray`}
+                >
+                  {item.name}
+                </p>
+                {item.badgeCount ? (
+                  <div className="h-8 w-8 rounded-full bg-primary flex justify-center items-center  font-semibold text-white">
+                    {item.badgeCount}
+                  </div>
+                ) : (
+                  <div />
+                )}
+              </div>
+            ))}
           </div>
-          <div className="flex items-center gap-[40px] select-none">
-            <Link
-              href="/auth/login"
-              className="hover:text-primary cursor-pointer flex items-center gap-2 "
-            >
-              Sign in
-            </Link>
+          <div className="flex items-center gap-[20px] select-none">
+            <MainButton
+              text="Sign in"
+              width="contain"
+              className="bg-white border text-[#31373D] border-[#EDEEF0] hover:bg-white"
+            />
+
+            <MainButton text="Start for free" width="contain" />
           </div>
         </div>
       </div>
@@ -44,7 +82,7 @@ function NavBar() {
       >
         <div className="flex justify-between mx-[10px]">
           <div className="flex gap-[50px] text-[16px] items-center select-none">
-            <img src="/svgs/sf_logo.svg" alt="logo" className="w-[7rem]" />
+            <img src="/images/logo.svg" alt="logo" />
           </div>
           <div className="flex items-center gap-[40px]">
             {menu ? (
@@ -54,7 +92,7 @@ function NavBar() {
               />
             ) : (
               <img
-                src="/svgs/hamburger.svg"
+                src="/images/menu.svg"
                 alt="logo"
                 className="cursor-pointer animate-in fade-in zoom-in"
                 onClick={toggleMenu}
@@ -65,15 +103,31 @@ function NavBar() {
         {menu ? (
           <div className="my-8 select-none animate-in slide-in-from-right">
             <div className="flex flex-col gap-8 mt-8 mx-4">
-              <p className="text-black cursor-pointer">
-                <span>How it works</span>
-              </p>
-              {/* Add more links here */}
+              {links.map((item, index) => (
+                <div key={index} className="flex gap-2">
+                  <p
+                    className={`hover:text-primary cursor-pointer flex items-center gap-2  font-[500] text-gray`}
+                  >
+                    {item.name}
+                  </p>
+                  {item.badgeCount ? (
+                    <div className="h-8 w-8 rounded-full bg-primary flex justify-center items-center  font-semibold text-white">
+                      {item.badgeCount}
+                    </div>
+                  ) : (
+                    <div />
+                  )}
+                </div>
+              ))}
 
-              <div className="flex flex-col gap-[40px] select-none">
-                <Link href="/auth/login" className="text-black cursor-pointer">
-                  Signin
-                </Link>
+              <div className="flex flex-col gap-[20px] select-none">
+                <MainButton
+                  text="Sign in"
+                  width="contain"
+                  className="bg-white text-[#31373D] border-[#EDEEF0] hover:bg-white"
+                />
+
+                <MainButton text="Start for free" width="contain" />
               </div>
             </div>
           </div>
